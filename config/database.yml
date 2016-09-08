@@ -5,15 +5,15 @@ default: &default
 
 development:
   <<: *default
-  database: ntd_surveys_development
+  database: microservices-surveys-development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ntd_surveys_test
+  database: microservices-surveys-test
 
 production:
   <<: *default
-  database: ntd_surveys_production
+  database: transit-microservices-surveys
