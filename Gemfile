@@ -23,6 +23,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-passenger', require: false
+  gem 'listen', require: false
 end
 
 group :development, :test do

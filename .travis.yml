@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+  - 2.2.3
+env: 'CODECLIMATE_REPO_TOKEN=TODO'
+before_script:
+  - cp config/database.yml.example config/database.yml
+  - mysql -e 'create database microservices-surveys-test'
+script: 'bundle exec rake db:reset travis'
+notifications:
+  email:
+    recipients:
+      - programmers@admin.umass.edu
