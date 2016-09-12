@@ -1,6 +1,6 @@
 language: ruby
 rvm: 2.3.0
-env: CODECLIMATE_REPO_TOKEN=d69084d39be74e8dafe9a689102b19130a21abe963dce8aa6146078098c9b242
+env: CODECLIMATE_REPO_TOKEN=eab6c8947bd012a12d3742c121d2375d1450a08f3410d1ddcab4d7f9f686278d
 before_script:
   - cp config/database.yml.example config/database.yml
 script:
