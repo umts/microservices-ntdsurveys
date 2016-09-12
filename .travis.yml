@@ -1,12 +1,15 @@
 language: ruby
-rvm:
-  - 2.2.3
-env: 'CODECLIMATE_REPO_TOKEN=TODO'
+rvm: 2.3.0
+env: CODECLIMATE_REPO_TOKEN=d69084d39be74e8dafe9a689102b19130a21abe963dce8aa6146078098c9b242
 before_script:
+  - mysql2 -e 'create database microservices-surveys-test'
+  - cp config/application.yml.example config/application.yml
   - cp config/database.yml.example config/database.yml
-  - mysql -e 'create database microservices-surveys-test'
-script: 'bundle exec rake db:reset travis'
+script:
+  - bundle exec rake db:reset
+  - bundle exec rspec
 notifications:
   email:
-    recipients:
-      - programmers@admin.umass.edu
+    on_success: never
+    on_failure: change
+    recipients: programmers@admin.umass.edu
