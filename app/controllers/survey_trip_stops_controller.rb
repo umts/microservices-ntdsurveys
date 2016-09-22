@@ -1,5 +1,4 @@
 class SurveyTripStopsController < ApplicationController
-
   def index
   end
 
