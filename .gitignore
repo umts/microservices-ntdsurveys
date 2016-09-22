@@ -23,3 +23,8 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore all of coverage but last run json.
+/coverage/*
+!/coverage/.last_run.json
+!/coverage/index.html
