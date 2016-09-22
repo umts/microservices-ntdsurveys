@@ -1,0 +1,2 @@
+class SurveyTripStop < ApplicationRecord
+end
