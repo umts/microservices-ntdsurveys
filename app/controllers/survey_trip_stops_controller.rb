@@ -1,7 +1,4 @@
 class SurveyTripStopsController < ApplicationController
-  def index
-    @survey_trip_stops = SurveyTripStop.all
-  end
 
   def show
     @survey_trip_stop = SurveyTripStop.find(params[:id])
