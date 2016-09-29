@@ -1,5 +1,3 @@
 require 'rails_helper'
 
-RSpec.describe SurveysController, type: :controller do
-
-end
+describe SurveysController do end
