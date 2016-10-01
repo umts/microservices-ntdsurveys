@@ -1,0 +1,27 @@
+%table
+  %thead
+    %tr
+      %th Survey #
+      %th Date
+      %th Shift
+      %th Time
+      %th Driver
+  %tbody
+    %tr
+      %td= survey.id
+      %td= survey.date
+      %td= survey.shift
+      %td= survey.date
+      %td= survey.driver
+%table
+  %thead
+    %tr
+      %th Location
+      %th Passengers Boarded
+      %th Passengers Alighted
+  %tbody
+    - @survey.survey_trip_stops.each do |survey_trip_stop|
+      %tr
+        %td= survey_trip_stop.location
+        %td= survey_trip_stop.boarded
+        %td= survey_trip_stop.alighted
