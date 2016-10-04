@@ -4,12 +4,16 @@ class SurveyTripStopsController < ApplicationController
   end
 
   def new
+    @survey_trip_stop = Survey.new
   end
 
   def create
+    survey_trip_stop = Survey.new(params[:survey_trip_stop])
+    survey_trip_stop.save
   end
 
   def edit
+    @survey_trip_stop = Survey.find(params[:id])
   end
 
   def update
