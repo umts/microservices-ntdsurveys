@@ -1,9 +1,12 @@
 = form_for @survey_trip_stop do |f|
   .field
     = f.label "Location"
+    = f.text_fiel :location
   .field
     = f.label "Boarded"
+    = f.number_field :boarded
   .field
     = f.label "Alighted"
+    = f.number_field :alighted
   .actions
     = f.submit "Create"
