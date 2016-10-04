@@ -13,7 +13,12 @@ class SurveysController < ApplicationController
 
   def create
     survey = Survey.new(params[:survey])
-    survey.save
+    if survey.save
+      flash[:notice] = "Successfully created survey."
+    else
+      flash[:alert] = survey.errors.full_messages
+    end
+    redirect_to new_survey_path
   end
 
   def edit
@@ -22,7 +27,12 @@ class SurveysController < ApplicationController
 
   def update
     survey = Survey.find(params[:id])
-    survey.update(params[:survey])
+    if survey.update(params[:survey])
+      flash[:notice] = "Successfully updated survey."
+    else
+      flash[:alert] = survey.errors.full_messages
+    end
+    redirect_to edit_survey_path
   end
 
   def destroy
