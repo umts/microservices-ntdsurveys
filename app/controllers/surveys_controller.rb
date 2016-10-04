@@ -8,12 +8,16 @@ class SurveysController < ApplicationController
   end
 
   def new
+    @survey = Survey.new
   end
 
   def create
+    survey = Survey.new(params[:survey])
+    survey.save
   end
 
   def edit
+    @survey = Survey.find(params[:id])
   end
 
   def update
