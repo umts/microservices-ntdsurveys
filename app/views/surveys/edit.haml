@@ -1,11 +1,15 @@
 = form_for @survey do |f|
   .field
     = f.label "Date"
+    = f.date_field :date
   .field
     = f.label "Shift"
+    = f.text_field :shift
   .field
     = f.label "Time"
+    = f.time_field :time
   .field
     = f.label "Driver"
+    = f.text_field :driver
   .actions
     = f.submit "Update"
