@@ -5,8 +5,14 @@
   .field
     = f.label "Shift"
     = f.text_field :shift
+  .field 
+    = f.label "Starting passengers"
+    = f.number_field :starting_pax
+  .field 
+    = f.label "In house"
+    = f.check_box :in_house
   .field
-    = f.label "Time"
-    = f.time_field :time
+    = f.label "Completed"
+    = f.check_box :completed
   .actions
     = f.submit "Update"
