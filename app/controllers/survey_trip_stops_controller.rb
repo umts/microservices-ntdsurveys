@@ -4,11 +4,11 @@ class SurveyTripStopsController < ApplicationController
   end
 
   def new
-    @survey_trip_stop = Survey.new
+    @survey_trip_stop = SurveyTripStop.new
   end
 
   def create
-    survey_trip_stop = Survey.new(params[:survey_trip_stop])
+    survey_trip_stop = SurveyTripStop.new(params[:survey_trip_stop])
     if survey_trip_stop.save
       flash[:notice] = "Successfully created survey trip stop."
     else
@@ -18,7 +18,7 @@ class SurveyTripStopsController < ApplicationController
   end
 
   def edit
-    @survey_trip_stop = Survey.find(params[:id])
+    @survey_trip_stop = SurveyTripStop.find(params[:id])
   end
 
   def update
