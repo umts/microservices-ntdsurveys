@@ -7,8 +7,8 @@
       %th Time
   %tbody
     - @surveys.each do |survey|
-    %tr
-      %td= survey.id
-      %td= survey.date.strftime("%m/%d/%Y")
-      %td= survey.shift
-      %td= survey.date.strftime("%H:%M")
+      %tr
+        %td= survey.id
+        %td= survey.date.strftime("%m/%d/%Y")
+        %td= survey.shift
+        %td= survey.date.strftime("%H:%M")
