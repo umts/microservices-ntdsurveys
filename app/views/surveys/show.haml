@@ -8,9 +8,9 @@
   %tbody
     %tr
       %td= @survey.id
-      %td= @survey.date
+      %td= @survey.date.strftime("%m/%d/%Y")
       %td= @survey.shift
-      %td= @survey.date
+      %td= @survey.date.strftime("%H:%M")
 %table
   %thead
     %tr
