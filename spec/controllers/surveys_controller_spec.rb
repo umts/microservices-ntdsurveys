@@ -25,7 +25,7 @@ describe SurveysController do
   end
 
   describe 'POST #create' do 
-    let(:submit) { post :create, params: { starting_pax: 1 } }
+    let(:submit) { post :create, params: { survey: { starting_pax: 1 } } }
     it 'creates the survey' do 
       expect{submit}.to change{Survey.count}.by 1
     end
@@ -42,6 +42,10 @@ describe SurveysController do
 
   describe 'PUT #update' do 
     it 'updates the survey' do 
+      survey = create :survey, starting_pax: 3
+      put :update, params: { id: survey.id, survey: { starting_pax: 1} }
+      survey.reload
+      expect(survey.starting_pax).to eql 1
     end
   end
 

@@ -41,8 +41,8 @@ describe SurveyTripStopsController do
   end
 
   describe 'PUT #update' do 
-    let!(:survey_trip_stop) { create :survey_trip_stop, boarded: 1, alighted: 1 }
     it 'updates the survey' do 
+      survey_trip_stop = create :survey_trip_stop, boarded: 1, alighted: 1 
       put :update, params { id: survey_trip_stop.id, 
                             survey_trip_stop: { boarded: 0, alighted: 0 } }
       survey_trip_stop.reload
