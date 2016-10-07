@@ -1,22 +1,6 @@
 require 'rails_helper'
 
 describe SurveyTripStopsController do 
-  describe 'GET #index' do 
-    it 'renders the template' do 
-      get :index
-      expect(response).to render_template survey_trip_stops_path
-    end 
-  end
-
-  describe 'GET #show' do 
-    it 'renders the template' do 
-      survey_trip_stop = create :survey_trip_stop
-      get :show, params: { id: survey_trip_stop.id }
-      expect(response).to render_template survey_trip_stop_path
-      expect(assigns[:survey_trip_stop]).to be survey_trip_stop
-    end
-  end
-
   describe 'GET #new' do 
     it 'renders the template' do 
       get :new
