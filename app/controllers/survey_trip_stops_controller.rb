@@ -10,7 +10,7 @@ class SurveyTripStopsController < ApplicationController
   def create
     survey_trip_stop = SurveyTripStop.new(params[:survey_trip_stop])
     if survey_trip_stop.save
-      flash[:notice] = "Successfully created survey trip stop."
+      flash[:notice] = 'Successfully created survey trip stop.'
     else
       flash[:alert] = survey_trip_stop.errors.full_messages
     end
@@ -24,7 +24,7 @@ class SurveyTripStopsController < ApplicationController
   def update
     survey_trip_stop = SurveyTripStop.find(params[:id])
     if survey_trip_stop.update(params[:survey_trip_stop])
-      flash[:notice] = "Successfully updated survey trip stop."
+      flash[:notice] = 'Successfully updated survey trip stop.'
     else
       flash[:alert] = survey_trip_stop.errors.full_messages
     end

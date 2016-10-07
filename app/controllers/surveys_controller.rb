@@ -14,7 +14,7 @@ class SurveysController < ApplicationController
   def create
     survey = Survey.new(params[:survey])
     if survey.save
-      flash[:notice] = "Successfully created survey."
+      flash[:notice] = 'Successfully created survey.'
     else
       flash[:alert] = survey.errors.full_messages
     end
@@ -28,7 +28,7 @@ class SurveysController < ApplicationController
   def update
     survey = Survey.find(params[:id])
     if survey.update(params[:survey])
-      flash[:notice] = "Successfully updated survey."
+      flash[:notice] = 'Successfully updated survey.'
     else
       flash[:alert] = survey.errors.full_messages
     end
