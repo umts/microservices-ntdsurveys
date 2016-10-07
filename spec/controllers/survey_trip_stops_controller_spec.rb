@@ -25,7 +25,7 @@ describe SurveyTripStopsController do
   end
 
   describe 'POST #create' do 
-    let(:submit) { post :create, params: { location: 'Haigus Mall' } }
+    let(:submit) { post :create, params: { survey_trip_stop: { location: 'Haigus Mall' } } }
     it 'creates the survey' do 
       expect{submit}.to change{SurveyTripStop.count}.by 1
     end
@@ -41,7 +41,13 @@ describe SurveyTripStopsController do
   end
 
   describe 'PUT #update' do 
+    let!(:survey_trip_stop) { create :survey_trip_stop, boarded: 1, alighted: 1 }
     it 'updates the survey' do 
+      put :update, params { id: survey_trip_stop.id, 
+                            survey_trip_stop: { boarded: 0, alighted: 0 } }
+      survey_trip_stop.reload
+      expect(survey_trip_stop.boarded).to eql 0
+      expect(survey_trip_stop.alighted).to eql 0
     end
   end
 
