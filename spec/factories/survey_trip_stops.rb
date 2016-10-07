@@ -4,5 +4,6 @@ FactoryGirl.define do
     alighted 1
     miles_from_previous 1.5
     sequence_number 1
+    association :survey
   end
 end
