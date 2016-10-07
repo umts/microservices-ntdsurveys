@@ -20,7 +20,7 @@ describe SurveyTripStopsController do
       survey_trip_stop = create :survey_trip_stop
       get :edit, params: { id: survey_trip_stop.id }
       expect(response).to render_template :edit
-      expect(assigns[:survey_trip_stop]).to be survey_trip_stop 
+      expect(assigns[:survey_trip_stop]).to eq survey_trip_stop 
     end
   end
 

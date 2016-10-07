@@ -13,7 +13,7 @@ describe SurveysController do
       survey = create :survey
       get :show, params: { id: survey.id }
       expect(response).to render_template :show
-      expect(assigns[:survey]).to be survey
+      expect(assigns[:survey]).to eq survey
     end
   end
 
@@ -36,7 +36,7 @@ describe SurveysController do
       survey = create :survey
       get :edit, params: { id: survey.id }
       expect(response).to render_template :edit
-      expect(assigns[:survey]).to be survey
+      expect(assigns[:survey]).to eq survey
     end
   end
 
