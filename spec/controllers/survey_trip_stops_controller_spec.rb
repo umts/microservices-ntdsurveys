@@ -43,7 +43,7 @@ describe SurveyTripStopsController do
   describe 'PUT #update' do 
     it 'updates the survey' do 
       survey_trip_stop = create :survey_trip_stop, boarded: 1, alighted: 1 
-      put :update, params { id: survey_trip_stop.id, 
+      put :update, params: { id: survey_trip_stop.id, 
                             survey_trip_stop: { boarded: 0, alighted: 0 } }
       survey_trip_stop.reload
       expect(survey_trip_stop.boarded).to eql 0
