@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe SurveysController do 
   describe 'GET #index' do 
-    it 'should render the template' do 
+    it 'renders the template' do 
       get :index
       expect(response).to render_template surveys_path
     end 
   end
 
   describe 'GET #show' do 
-    it 'should render the template' do 
+    it 'renders the template' do 
       survey = create :survey
       get :show, params: { id: survey.id }
       expect(response).to render_template survey_path
@@ -18,7 +18,7 @@ describe SurveysController do
   end
 
   describe 'GET #new' do 
-    it 'should render the template' do 
+    it 'renders the template' do 
       get :new
       expect(response).to render_template new_survey_path
     end
@@ -26,15 +26,23 @@ describe SurveysController do
 
   describe 'POST #create' do 
     let(:submit) { post :create, params: { starting_pax: 1 } }
-    it 'should create the survey' do 
+    it 'creates the survey' do 
       expect{submit}.to change{Survey.count}.by 1
     end
   end
 
   describe 'GET #edit' do 
+    it 'renders the template' do
+      survey = create :survey
+      get :edit, params: { id: survey.id }
+      expect(response).to render_template edit_survey_path
+      expect(assigns[:survey]).to be survey 
+    end
   end
 
   describe 'PUT #update' do 
+    it 'updates the survey' do 
+    end
   end
 
   describe 'DELETE #destroy' do 
