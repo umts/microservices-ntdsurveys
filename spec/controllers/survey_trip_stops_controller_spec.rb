@@ -4,7 +4,7 @@ describe SurveyTripStopsController do
   describe 'GET #new' do 
     it 'renders the template' do 
       get :new
-      expect(response).to render_template new_survey_trip_stop_path
+      expect(response).to render_template :new
     end
   end
 
@@ -19,7 +19,7 @@ describe SurveyTripStopsController do
     it 'renders the template' do
       survey_trip_stop = create :survey_trip_stop
       get :edit, params: { id: survey_trip_stop.id }
-      expect(response).to render_template edit_survey_trip_stop_path
+      expect(response).to render_template :edit
       expect(assigns[:survey_trip_stop]).to be survey_trip_stop 
     end
   end

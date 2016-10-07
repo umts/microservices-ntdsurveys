@@ -4,7 +4,7 @@ describe SurveysController do
   describe 'GET #index' do
     it 'renders the template' do
       get :index
-      expect(response).to render_template surveys_path
+      expect(response).to render_template :index
     end
   end
 
@@ -12,7 +12,7 @@ describe SurveysController do
     it 'renders the template' do
       survey = create :survey
       get :show, params: { id: survey.id }
-      expect(response).to render_template survey_path
+      expect(response).to render_template :show
       expect(assigns[:survey]).to be survey
     end
   end
@@ -20,7 +20,7 @@ describe SurveysController do
   describe 'GET #new' do
     it 'renders the template' do
       get :new
-      expect(response).to render_template new_survey_path
+      expect(response).to render_template :new
     end
   end
 
@@ -35,7 +35,7 @@ describe SurveysController do
     it 'renders the template' do
       survey = create :survey
       get :edit, params: { id: survey.id }
-      expect(response).to render_template edit_survey_path
+      expect(response).to render_template :edit
       expect(assigns[:survey]).to be survey
     end
   end
