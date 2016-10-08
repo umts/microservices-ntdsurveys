@@ -1,22 +1,11 @@
-%h2= "Survey #{@survey.id}"
-= form_for @survey do |survey_form|  
-  %table
-    %thead
-      %tr
-        %th Survey #
-        %th Date
-        %th Shift
-        %th Time
-        %th
-        %th
-    %tbody
-      %tr
-        %td= @survey.id
-        %td= @survey.date.strftime("%m/%d/%Y")
-        %td= @survey.shift
-        %td= @survey.date.strftime("%H:%M")
-        %td= link_to "Print", '#'
-        %td= link_to 'Back', surveys_path
+%h1= "Survey #{@survey.id}"
+%p= "Date: #{@survey.date.strftime("%m/%d/%Y")}"
+%p= "Shift: #{@survey.shift}"
+%p= "Time: #{@survey.date.strftime("%H:%M")}"
+= form_for @survey do |survey_form|
+  .field
+    = survey_form.label 'Starting Passengers: '
+    = survey_form.number_field :starting_pax
   %table
     %thead
       %tr
@@ -26,11 +15,14 @@
         %th Passengers Alighted
         %th
     %tbody
-      - @survey.survey_trip_stops.each do |survey_trip_stop|
-        = survey_form.fields_for survey_trip_stop do |sts_form|
-          %tr
-            %td= survey_trip_stop.time.strftime("%H:%M")
-            %td= survey_trip_stop.location
-            %td= sts_form.number_field :boarded
-            %td= sts_form.number_field :alighted
-            %td= link_to "Edit", edit_survey_trip_stop_path(survey_trip_stop.id)
+      = survey_form.fields_for :survey_trip_stops do |sts_form|
+        %tr
+          %td= sts_form.object.time.strftime("%H:%M")
+          %td= sts_form.object.location
+          %td= sts_form.number_field :boarded
+          %td= sts_form.number_field :alighted
+  .field
+    = survey_form.hidden_field :completed, value: true
+  .actions
+    = survey_form.submit "Update Counts and Mark as Completed"
+  = link_to "Back", surveys_path
