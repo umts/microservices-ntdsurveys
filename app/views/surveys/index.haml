@@ -5,6 +5,8 @@
       %th Date
       %th Shift
       %th Time
+      %th Starting Passengers
+      %th Completed?
       %th
       %th
   %tbody
@@ -14,5 +16,11 @@
         %td= survey.date.strftime("%m/%d/%Y")
         %td= survey.shift
         %td= survey.date.strftime("%H:%M")
+        %td= survey.starting_pax
+        %td
+          - if survey.completed
+            Yes
+          - else
+            No
         %td= link_to "View", survey_path(survey.id)
         %td= link_to "Edit", edit_survey_path(survey.id)
