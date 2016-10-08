@@ -1,8 +1,0 @@
-= form_for @survey do |f|
-  .field 
-    = f.label "Starting passengers"
-    = f.number_field :starting_pax
-  .field
-    = f.hidden_field :completed, value: true
-  .actions
-    = f.submit "Update"
