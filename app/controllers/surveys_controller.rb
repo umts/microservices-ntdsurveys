@@ -7,20 +7,6 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
   end
 
-  def new
-    @survey = Survey.new
-  end
-
-  def create
-    survey = Survey.new(params[:survey])
-    if survey.save
-      flash[:notice] = 'Successfully created survey.'
-    else
-      flash[:alert] = survey.errors.full_messages
-    end
-    redirect_to new_survey_path
-  end
-
   def edit
     @survey = Survey.find(params[:id])
   end

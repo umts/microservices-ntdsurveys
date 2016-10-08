@@ -3,20 +3,6 @@ class SurveyTripStopsController < ApplicationController
     @survey_trip_stop = SurveyTripStop.find(params[:id])
   end
 
-  def new
-    @survey_trip_stop = SurveyTripStop.new
-  end
-
-  def create
-    survey_trip_stop = SurveyTripStop.new(params[:survey_trip_stop])
-    if survey_trip_stop.save
-      flash[:notice] = 'Successfully created survey trip stop.'
-    else
-      flash[:alert] = survey_trip_stop.errors.full_messages
-    end
-    redirect_to new_survey_trip_stop_path
-  end
-
   def edit
     @survey_trip_stop = SurveyTripStop.find(params[:id])
   end
