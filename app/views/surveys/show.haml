@@ -5,12 +5,14 @@
       %th Date
       %th Shift
       %th Time
+      %th
   %tbody
     %tr
       %td= @survey.id
       %td= @survey.date.strftime("%m/%d/%Y")
       %td= @survey.shift
       %td= @survey.date.strftime("%H:%M")
+      %td= link_to "Print", '#'
 %table
   %thead
     %tr
@@ -21,7 +23,7 @@
   %tbody
     - @survey.survey_trip_stops.each do |survey_trip_stop|
       %tr
-        %td= survey_trip_stop.time
+        %td= survey_trip_stop.time.strftime("%H:%M")
         %td= survey_trip_stop.location
         %td= survey_trip_stop.boarded
         %td= survey_trip_stop.alighted
