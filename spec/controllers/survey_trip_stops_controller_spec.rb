@@ -1,20 +1,6 @@
 require 'rails_helper'
 
 describe SurveyTripStopsController do 
-  describe 'GET #new' do 
-    it 'renders the template' do 
-      get :new
-      expect(response).to render_template :new
-    end
-  end
-
-  describe 'POST #create' do 
-    let(:submit) { post :create, params: { survey_trip_stop: { location: 'Haigus Mall' } } }
-    it 'creates the survey' do 
-      expect{submit}.to change{SurveyTripStop.count}.by 1
-    end
-  end
-
   describe 'GET #edit' do 
     it 'renders the template' do
       survey_trip_stop = create :survey_trip_stop

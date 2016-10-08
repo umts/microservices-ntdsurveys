@@ -17,20 +17,6 @@ describe SurveysController do
     end
   end
 
-  describe 'GET #new' do
-    it 'renders the template' do
-      get :new
-      expect(response).to render_template :new
-    end
-  end
-
-  describe 'POST #create' do
-    let(:submit) { post :create, params: { survey: { starting_pax: 1 } } }
-    it 'creates the survey' do
-      expect { submit }.to change { Survey.count }.by 1
-    end
-  end
-
   describe 'GET #edit' do
     it 'renders the template' do
       survey = create :survey
