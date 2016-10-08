@@ -5,7 +5,6 @@ class SurveyTripStopsController < ApplicationController
 
   def update
     survey_trip_stop = SurveyTripStop.find(params[:id])
-    byebug
     if survey_trip_stop.update(survey_trip_stop_params)
       flash[:notice] = 'Successfully updated survey trip stop.'
     else
