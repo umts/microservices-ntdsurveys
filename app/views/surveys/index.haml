@@ -1,3 +1,4 @@
+%h1 Surveys
 %table
   %thead
     %tr
@@ -6,7 +7,8 @@
       %th Shift
       %th Time
       %th Starting Passengers
-      %th Completed?
+      %th Printed?
+      %th In House?
       %th
       %th
       %th
@@ -19,7 +21,12 @@
         %td= survey.date.strftime("%H:%M")
         %td= survey.starting_pax
         %td
-          - if survey.completed
+          - if survey.printed
+            Yes
+          - else
+            No
+        %td
+          - if survey.in_house
             Yes
           - else
             No
