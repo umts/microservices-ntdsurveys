@@ -13,12 +13,12 @@ class SurveysController < ApplicationController
 
   def update
     survey = Survey.find(params[:id])
-    if survey.update(params[:survey])
+    if survey.update(survey_params)
       flash[:notice] = 'Successfully updated survey.'
     else
       flash[:alert] = survey.errors.full_messages
     end
-    redirect_to edit_survey_path
+    redirect_to surveys_path
   end
 
   def destroy
@@ -28,5 +28,11 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
+  end
+
+  private
+
+  def survey_params
+    params.require(:survey).permit(:starting_pax)
   end
 end
