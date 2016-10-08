@@ -3,7 +3,7 @@ rvm: 2.3.0
 env: CODECLIMATE_REPO_TOKEN=eab6c8947bd012a12d3742c121d2375d1450a08f3410d1ddcab4d7f9f686278d
 before_script:
   - cp config/database.yml.example config/database.yml
-  - cp config/secret.yml.example config/secret.yml
+  - cp config/secrets.yml.example config/secrets.yml
 script:
   - bundle exec rails db:reset
   - bundle exec rspec
