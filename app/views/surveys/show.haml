@@ -20,6 +20,7 @@
       %th Location
       %th Passengers Boarded
       %th Passengers Alighted
+      %th
   %tbody
     - @survey.survey_trip_stops.each do |survey_trip_stop|
       %tr
@@ -27,3 +28,4 @@
         %td= survey_trip_stop.location
         %td= survey_trip_stop.boarded
         %td= survey_trip_stop.alighted
+        %td= link_to "Edit", edit_survey_trip_stop_path(survey_trip_stop.id)
