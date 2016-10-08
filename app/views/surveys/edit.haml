@@ -3,6 +3,6 @@
     = f.label "Starting passengers"
     = f.number_field :starting_pax
   .field
-    = f.input :completed, as: "hidden", value: true
+    = f.hidden_field :completed, value: true
   .actions
     = f.submit "Update"

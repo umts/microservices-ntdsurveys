@@ -6,6 +6,7 @@
       %th Shift
       %th Time
       %th
+      %th
   %tbody
     %tr
       %td= @survey.id
@@ -13,6 +14,7 @@
       %td= @survey.shift
       %td= @survey.date.strftime("%H:%M")
       %td= link_to "Print", '#'
+      %td= link_to 'Back', surveys_path
 %table
   %thead
     %tr

@@ -6,6 +6,7 @@
       %th Shift
       %th Time
       %th
+      %th
   %tbody
     - @surveys.each do |survey|
       %tr
@@ -14,3 +15,4 @@
         %td= survey.shift
         %td= survey.date.strftime("%H:%M")
         %td= link_to "View", survey_path(survey.id)
+        %td= link_to "Edit", edit_survey_path(survey.id)
