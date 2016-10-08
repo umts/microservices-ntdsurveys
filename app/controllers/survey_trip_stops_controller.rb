@@ -15,6 +15,10 @@ class SurveyTripStopsController < ApplicationController
 
   def destroy
     survey_trip_stop = SurveyTripStop.find(params[:id])
-    survey_trip_stop.destroy
+    if survey_trip_stop.destroy
+      flash[:notice] = 'Successfully deleted survey trip stop.'
+    else
+      flash[:alert] = survey_trip_stop.errors.full_messages
+    end
   end
 end

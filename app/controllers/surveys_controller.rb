@@ -23,6 +23,10 @@ class SurveysController < ApplicationController
 
   def destroy
     survey = Survey.find(params[:id])
-    survey.destroy
+    if survey.destroy
+      flash[:notice] = 'Successfully deleted survey.'
+    else
+      flash[:alert] = survey.errors.full_messages
+    end
   end
 end
