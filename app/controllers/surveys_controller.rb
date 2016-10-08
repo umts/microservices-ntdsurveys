@@ -33,6 +33,6 @@ class SurveysController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(:starting_pax)
+    params.require(:survey).permit(:starting_pax, :completed)
   end
 end
