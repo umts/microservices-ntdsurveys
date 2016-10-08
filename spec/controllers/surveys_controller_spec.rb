@@ -17,15 +17,6 @@ describe SurveysController do
     end
   end
 
-  describe 'GET #edit' do
-    it 'renders the template' do
-      survey = create :survey
-      get :edit, params: { id: survey.id }
-      expect(response).to render_template :edit
-      expect(assigns[:survey]).to eq survey
-    end
-  end
-
   describe 'PUT #update' do
     it 'updates the survey' do
       survey = create :survey, starting_pax: 3
