@@ -7,10 +7,6 @@ class SurveysController < ApplicationController
     @survey = Survey.find(params[:id])
   end
 
-  def edit
-    @survey = Survey.find(params[:id])
-  end
-
   def update
     survey = Survey.find(params[:id])
     if survey.update(survey_params)
