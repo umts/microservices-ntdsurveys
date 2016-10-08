@@ -1,10 +1,12 @@
 class SurveysController < ApplicationController
   def index
-    @surveys = Survey.all
+    @surveys = Survey.all.paginate(page: params[:page], per_page: 25)
+    @page = params[:page]
   end
 
   def show
     @survey = Survey.find(params[:id])
+    @page = params[:page]
   end
 
   def update
