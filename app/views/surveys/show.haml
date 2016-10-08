@@ -14,12 +14,14 @@
 %table
   %thead
     %tr
+      %th Time
       %th Location
       %th Passengers Boarded
       %th Passengers Alighted
   %tbody
     - @survey.survey_trip_stops.each do |survey_trip_stop|
       %tr
+        %td= survey_trip_stop.time
         %td= survey_trip_stop.location
         %td= survey_trip_stop.boarded
         %td= survey_trip_stop.alighted
