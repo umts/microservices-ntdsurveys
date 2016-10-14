@@ -29,8 +29,17 @@ describe SurveysController do
   describe 'DELETE #destroy' do
     let!(:survey) { create :survey }
     let(:submit) { delete :destroy, params: { id: survey.id } }
-    it 'will destroy the survey' do
-      expect { submit }.to change { Survey.count }.by(-1)
+    context 'without survey trip stops' do 
+      it 'will delete the survey' do
+        expect { submit }.to change { Survey.count }.by(-1)
+      end
+    end
+    context 'with survey trip stops' do 
+      it 'will delete the survey and its trip stops' do 
+        create :survey_trip_stop, survey_id: survey.id
+        expect { submit }.to change { Survey.count }.by(-1).and(
+                            change { SurveyTripStop.count }.by(-1))
+      end
     end
   end
 end
