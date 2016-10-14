@@ -30,7 +30,7 @@ describe SurveysController do
     let!(:survey) { create :survey }
     let(:submit) { delete :destroy, params: { id: survey.id } }
     it 'will destroy the survey' do
-      expect { submit }.to change { Survey.count }.by -1
+      expect { submit }.to change { Survey.count }.by(-1)
     end
   end
 end
