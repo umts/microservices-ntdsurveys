@@ -1,12 +1,11 @@
 class SurveysController < ApplicationController
   def index
-    @surveys = Survey.all.paginate(page: params[:page], per_page: 25)
-    @page = params[:page]
+    @surveys = Survey.all.paginate(page: params[:page], per_page: 6)
+    cookies[:page] = params[:page]
   end
 
   def show
     @survey = Survey.find(params[:id])
-    @page = params[:page]
   end
 
   def update
@@ -16,7 +15,7 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
-    redirect_to surveys_path
+    redirect_to surveys_path(page: cookies[:page])
   end
 
   def destroy
@@ -26,6 +25,7 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
+    redirect_to surveys_path(page: cookies[:page])
   end
 
   private
