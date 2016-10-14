@@ -31,6 +31,7 @@ class SurveysController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(:starting_pax, :completed, survey_trip_stops_attributes: [:id, :boarded, :alighted])
+    params.require(:survey).permit(:starting_pax, :completed, 
+                                    survey_trip_stops_attributes: [:id, :boarded, :alighted])
   end
 end
