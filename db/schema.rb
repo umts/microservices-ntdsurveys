@@ -34,4 +34,5 @@ ActiveRecord::Schema.define(version: 20161005141210) do
     t.datetime "date"
     t.string   "shift"
   end
+
 end
