@@ -12,6 +12,8 @@ gem 'rails', '~> 5.0'
 gem 'rubocop'
 gem 'sass-rails'
 gem 'uglifier'
+gem 'turbolinks'
+gem 'will_paginate'
 
 group :production do
   gem 'exception_notification'
