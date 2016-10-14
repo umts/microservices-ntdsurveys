@@ -26,6 +26,7 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
+    redirect_to surveys_path
   end
 
   private
