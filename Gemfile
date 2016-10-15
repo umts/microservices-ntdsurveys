@@ -14,6 +14,7 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'turbolinks'
 gem 'will_paginate'
+gem 'faker'
 
 group :production do
   gem 'exception_notification'
