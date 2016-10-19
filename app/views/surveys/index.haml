@@ -12,7 +12,7 @@
       %th In House?
       %th
       %th
-      %th
+      %th Print
   %tbody
     - @surveys.each do |survey|
       %tr
@@ -33,4 +33,5 @@
             No
         %td= link_to "View", survey_path(survey.id)
         %td= link_to "Delete", survey_path(survey.id), method: :delete
-        %td= link_to 'Print', '#'
+        %td= check_box_tag 'print', class: 'print-survey'
+= button_tag 'Print Selected Surveys', id: 'print-surveys'
