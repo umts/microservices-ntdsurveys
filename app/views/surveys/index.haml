@@ -1,37 +1,38 @@
 %h1 Surveys
 = will_paginate @surveys
-%table
-  %thead
-    %tr
-      %th Survey #
-      %th Date
-      %th Shift
-      %th Time
-      %th Starting Passengers
-      %th Printed?
-      %th In House?
-      %th
-      %th
-      %th Print
-  %tbody
-    - @surveys.each do |survey|
+= form_tag action: 'PDF' do |form|
+  %table
+    %thead
       %tr
-        %td= survey.id
-        %td= survey.date.strftime("%m/%d/%Y")
-        %td= survey.shift
-        %td= survey.date.strftime("%H:%M")
-        %td= survey.starting_pax
-        %td
-          - if survey.printed
-            Yes
-          - else
-            No
-        %td
-          - if survey.in_house
-            Yes
-          - else
-            No
-        %td= link_to "View", survey_path(survey.id)
-        %td= link_to "Delete", survey_path(survey.id), method: :delete
-        %td= check_box_tag 'print', class: 'print-survey'
-= button_tag 'Print Selected Surveys', id: 'print-surveys'
+        %th Survey #
+        %th Date
+        %th Shift
+        %th Time
+        %th Starting Passengers
+        %th Printed?
+        %th In House?
+        %th
+        %th
+        %th Print
+    %tbody
+      - @surveys.each do |survey|
+        %tr
+          %td= survey.id
+          %td= survey.date.strftime("%m/%d/%Y")
+          %td= survey.shift
+          %td= survey.date.strftime("%H:%M")
+          %td= survey.starting_pax
+          %td
+            - if survey.printed
+              Yes
+            - else
+              No
+          %td
+            - if survey.in_house
+              Yes
+            - else
+              No
+          %td= link_to "View", survey_path(survey.id)
+          %td= link_to "Delete", survey_path(survey.id), method: :delete
+          %td= check_box_tag 'surveys[]', survey.id, false
+  = submit_tag 'Print Selected Surveys'
