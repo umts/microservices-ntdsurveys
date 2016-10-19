@@ -29,7 +29,6 @@ class SurveysController < ApplicationController
   end
 
   def PDF
-    byebug
     surveys = Survey.find(params[:surveys]).sort_by(&:date)
     surveys.each { |survey| survey.update printed: true }
     pdf = SurveyPdf.new(surveys)
