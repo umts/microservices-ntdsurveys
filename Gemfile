@@ -39,4 +39,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'timecop'
+  gem 'rails-controller-testing'
 end

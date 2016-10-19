@@ -3,7 +3,7 @@ class CreateSurveyTripStops < ActiveRecord::Migration[5.0]
     create_table :survey_trip_stops do |t|
       t.integer :boarded
       t.integer :alighted
-      t.float :miles_from_previous
+      t.float   :miles_from_previous
       t.integer :sequence_number
 
       t.timestamps
