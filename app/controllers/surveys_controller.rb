@@ -29,7 +29,8 @@ class SurveysController < ApplicationController
   end
 
   def PDF
-    surveys = Survey.find(params[:survey]).sort_by(&:date)
+    byebug
+    surveys = Survey.find(params[:surveys]).sort_by(&:date)
     surveys.each { |survey| survey.update printed: true }
     pdf = SurveyPdf.new(surveys)
     send_data pdf.render, filename: "Survey #{DateTime.current}.pdf",
