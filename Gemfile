@@ -16,6 +16,7 @@ gem 'turbolinks'
 gem 'will_paginate'
 gem 'faker'
 gem 'prawn'
+gem 'prawn-table'
 
 group :production do
   gem 'exception_notification'
