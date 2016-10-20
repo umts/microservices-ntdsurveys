@@ -25,4 +25,4 @@
     = survey_form.hidden_field :completed, value: true
   .actions
     = survey_form.submit "Update Counts and Mark as Completed"
-  = link_to "Back", surveys_path(page: cookies[:page])
+  = link_to "Back", surveys_path(page: cookies[:page], completed: cookies[:completed])

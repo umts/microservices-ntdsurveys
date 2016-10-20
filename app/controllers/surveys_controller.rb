@@ -12,6 +12,7 @@ class SurveysController < ApplicationController
       @completed = false
     end
     cookies[:page] = params[:page]
+    cookies[:completed] = params[:completed]
   end
 
   def show
