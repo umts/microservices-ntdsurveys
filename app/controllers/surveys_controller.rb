@@ -1,12 +1,10 @@
 class SurveysController < ApplicationController
   def index
     if params[:completed].present?
-      if params[:completed] == "true"
-        @completed = true
-      else
-        @completed = false
+      if params[:completed] == 'true' ? @completed = true : @completed = false
       end
-      @surveys = Survey.where(completed: @completed).paginate(page: params[:page], per_page: 25)
+      @surveys = Survey.where(completed: @completed)
+                       .paginate(page: params[:page], per_page: 25)
     else
       @surveys = Survey.all.paginate(page: params[:page], per_page: 25)
       @completed = false
