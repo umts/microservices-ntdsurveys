@@ -1,4 +1,8 @@
 %h1 Surveys
+- if @completed
+  = link_to "View Incomplete Surveys", surveys_path(completed: false)
+- else
+  = link_to "View Completed Surveys", surveys_path(completed: true)
 = will_paginate @surveys
 = form_tag action: 'PDF' do |form|
   %table
