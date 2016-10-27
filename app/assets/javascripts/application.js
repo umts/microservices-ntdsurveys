@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+  $("#index-table").on("change", "#select-all", function(){
+    if($(this).is(":checked")){
+      $("#index-table").find(".print-survey").prop("checked", true);
+    }
+    else{
+      $("#index-table").find(".print-survey").prop("checked", false);
+    }
+  });
+});
