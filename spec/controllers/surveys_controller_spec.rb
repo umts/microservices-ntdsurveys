@@ -43,4 +43,14 @@ describe SurveysController do
       end
     end
   end
+
+  describe 'GET #pdf' do 
+    it 'will render the pdf' do 
+      survey = create :survey, printed: false
+      create :survey_trip_stop, survey_id: survey.id
+      get :pdf, params: { surveys: [survey.id] }
+      survey.reload
+      expect(survey.printed).to be true
+    end
+  end
 end
