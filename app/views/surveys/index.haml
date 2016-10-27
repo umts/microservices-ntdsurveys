@@ -41,4 +41,4 @@
           %td= link_to "View", survey_path(survey.id)
           %td= link_to "Delete", survey_path(survey.id), method: :delete
           %td= check_box_tag 'surveys[]', survey.id, false, class: 'print-survey'
-  = submit_tag 'Print Selected Surveys'
+  = submit_tag 'Print Selected Surveys', disabled: true, id: 'submit'
