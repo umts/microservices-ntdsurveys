@@ -4,8 +4,8 @@
 - else
   = link_to "View Completed Surveys", surveys_path(completed: true)
 = will_paginate @surveys
-= form_tag action: 'PDF' do |form|
-  %table
+= form_tag action: 'pdf' do |form|
+  %table{id: 'index-table'}
     %thead
       %tr
         %th Survey #
@@ -17,7 +17,9 @@
         %th In House?
         %th
         %th
-        %th Print
+        %th 
+          Print
+          = check_box_tag 'select_all', class: 'select-all'
     %tbody
       - @surveys.each do |survey|
         %tr
@@ -38,5 +40,5 @@
               No
           %td= link_to "View", survey_path(survey.id)
           %td= link_to "Delete", survey_path(survey.id), method: :delete
-          %td= check_box_tag 'surveys[]', survey.id, false
+          %td= check_box_tag 'surveys[]', survey.id, false, class: 'print-survey'
   = submit_tag 'Print Selected Surveys'
