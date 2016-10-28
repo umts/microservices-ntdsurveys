@@ -4,4 +4,8 @@ class Survey < ApplicationRecord
 
   validates :date, presence: true
   validates :shift, presence: true
+
+  def location
+    survey_trip_stops.order(:sequence_number).first.location
+  end
 end
