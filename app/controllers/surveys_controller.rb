@@ -1,5 +1,6 @@
 class SurveysController < ApplicationController
   def index
+    params[:page] = 1 if params[:page] == ''
     @completed = params[:completed] == 'true'
     @surveys = Survey.where(completed: @completed)
                      .paginate(page: params[:page], per_page: 25)
@@ -18,7 +19,8 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
-    redirect_to surveys_path(page: cookies[:page])
+    redirect_to surveys_path(page: cookies[:page],
+                             completed: cookies[:completed])
   end
 
   def destroy
@@ -28,7 +30,8 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
-    redirect_to surveys_path(page: cookies[:page])
+    redirect_to surveys_path(page: cookies[:page],
+                             completed: cookies[:completed])
   end
 
   def pdf
