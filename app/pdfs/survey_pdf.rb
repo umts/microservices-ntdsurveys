@@ -10,11 +10,15 @@ class SurveyPdf < Prawn::Document
         move_down 10
         table(survey.sts_table, row_colors: %w(ffffff cccccc))
         move_down 10
-        text "If this survey runs past your shift, please instruct the \
-              next driver to finish the survey.".squish,
-             style: :bold unless survey.completed
+        disclaimer(survey)
       end
       start_new_page unless survey == surveys.last
     end
+  end
+
+  def disclaimer(survey)
+    text "If this survey runs past your shift, please instruct the \
+          next driver to finish the survey.".squish,
+         style: :bold unless survey.completed
   end
 end
