@@ -8,14 +8,7 @@ class SurveyPdf < Prawn::Document
                [survey.id, survey.date.strftime('%m/%d/%Y'),
                 survey.shift, survey.date.strftime('%H:%M')]])
         move_down 20
-        if survey.completed
-          text survey.starting_pax.to_s +
-               " #{'passenger'.pluralize(survey.starting_pax)} on bus \
-               when departing ".squish + survey.location
-        else
-          text 'Number of passengers on bus when departing ' +
-               survey.location + ':   ____________'
-        end
+        text survey.sentence_location
         move_down 10
         table_data = [['Time', 'Location', 'Passengers boarded',
                        'Passengers alighted']]

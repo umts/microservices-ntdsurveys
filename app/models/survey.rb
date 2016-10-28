@@ -8,4 +8,14 @@ class Survey < ApplicationRecord
   def location
     survey_trip_stops.order(:sequence_number).first.location
   end
+
+  def sentence_location
+    if completed
+      " #{starting_pax} #{'passenger'.pluralize(starting_pax)} on bus \
+      when departing #{location}".squish
+    else
+      "Number of passengers on bus when departing \
+        #{location}: ____________".squish
+    end
+  end
 end
