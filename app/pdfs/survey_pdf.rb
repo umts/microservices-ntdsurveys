@@ -4,9 +4,7 @@ class SurveyPdf < Prawn::Document
     font_size 8
     surveys.each do |survey|
       column_box([0, cursor], columns: 2, width: bounds.width) do
-        table([['Survey #', 'Date', 'Shift', 'Time'],
-               [survey.id, survey.formatted_date, survey.shift,
-                survey.time]])
+        table(survey.table)
         move_down 20
         text survey.sentence_location
         move_down 10

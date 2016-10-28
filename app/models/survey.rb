@@ -38,4 +38,10 @@ class Survey < ApplicationRecord
     end
     sts_table + sts_data
   end
+
+  def table
+    [['Survey #', 'Date', 'Shift', 'Time'],
+     [id, formatted_date, shift,
+      time]]
+  end
 end
