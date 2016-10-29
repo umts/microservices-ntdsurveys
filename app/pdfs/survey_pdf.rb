@@ -19,17 +19,17 @@ class SurveyPdf < Prawn::Document
 
   def sentence_location(survey)
     if survey.completed
-      text " #{survey.starting_pax} \
-      #{'passenger'.pluralize(survey.starting_pax)} on bus \
+      text " #{survey.starting_pax} 
+      #{'passenger'.pluralize(survey.starting_pax)} on bus 
       when departing #{survey.location}".squish
     else
-      text "Number of passengers on bus when departing \
+      text "Number of passengers on bus when departing 
         #{survey.location}: ____________".squish
     end
   end
 
   def disclaimer(survey)
-    text "If this survey runs past your shift, please instruct the \
+    text "If this survey runs past your shift, please instruct the 
           next driver to finish the survey.".squish,
          style: :bold unless survey.completed
   end
