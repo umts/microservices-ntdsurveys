@@ -3,17 +3,17 @@ require 'rails_helper'
 describe Survey do
   describe 'formatted_date' do
     it 'returns the formatted date' do
-      date = DateTime.current
+      date = Time.zone.parse('2010-10-10 7:30')
       survey = create :survey, date: date
-      expect(survey.formatted_date).to eql date.strftime('%m/%d/%Y')
+      expect(survey.formatted_date).to eql '10/10/2010'
     end
   end
 
   describe 'time' do
     it 'returns the military time' do
-      time = DateTime.current
+      time = Time.zone.parse('2010-10-10 7:30')
       survey = create :survey, date: time
-      expect(survey.time).to eql time.strftime('%H:%M')
+      expect(survey.time).to eql '7:30'
     end
   end
 
