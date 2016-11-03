@@ -1,36 +1,44 @@
 %h1 Surveys
+- if @completed
+  = link_to "View Incomplete Surveys", surveys_path(completed: false)
+- else
+  = link_to "View Completed Surveys", surveys_path(completed: true)
 = will_paginate @surveys
-%table
-  %thead
-    %tr
-      %th Survey #
-      %th Date
-      %th Shift
-      %th Time
-      %th Starting Passengers
-      %th Printed?
-      %th In House?
-      %th
-      %th
-      %th
-  %tbody
-    - @surveys.each do |survey|
+= form_tag action: 'pdf' do |form|
+  %table{id: 'index-table'}
+    %thead
       %tr
-        %td= survey.id
-        %td= survey.date.strftime("%m/%d/%Y")
-        %td= survey.shift
-        %td= survey.date.strftime("%H:%M")
-        %td= survey.starting_pax
-        %td
-          - if survey.printed
-            Yes
-          - else
-            No
-        %td
-          - if survey.in_house
-            Yes
-          - else
-            No
-        %td= link_to "View", survey_path(survey.id)
-        %td= link_to "Delete", survey_path(survey.id), method: :delete
-        %td= link_to 'Print', '#'
+        %th Survey #
+        %th Date
+        %th Shift
+        %th Time
+        %th Starting Passengers
+        %th Printed?
+        %th In House?
+        %th
+        %th
+        %th 
+          Print
+          = check_box_tag 'select-all'
+    %tbody
+      - @surveys.each do |survey|
+        %tr
+          %td= survey.id
+          %td= survey.date.strftime("%m/%d/%Y")
+          %td= survey.shift
+          %td= survey.date.strftime("%H:%M")
+          %td= survey.starting_pax
+          %td
+            - if survey.printed
+              Yes
+            - else
+              No
+          %td
+            - if survey.in_house
+              Yes
+            - else
+              No
+          %td= link_to "View", survey_path(survey.id)
+          %td= link_to "Delete", survey_path(survey.id), method: :delete
+          %td= check_box_tag 'surveys[]', survey.id, false, class: 'print-survey'
+  = submit_tag 'Print Selected Surveys', disabled: true, id: 'submit'

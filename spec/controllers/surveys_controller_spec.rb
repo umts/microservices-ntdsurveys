@@ -29,17 +29,28 @@ describe SurveysController do
   describe 'DELETE #destroy' do
     let!(:survey) { create :survey }
     let(:submit) { delete :destroy, params: { id: survey.id } }
-    context 'without survey trip stops' do 
+    context 'without survey trip stops' do
       it 'will delete the survey' do
         expect { submit }.to change { Survey.count }.by(-1)
       end
     end
-    context 'with survey trip stops' do 
-      it 'will delete the survey and its trip stops' do 
+    context 'with survey trip stops' do
+      it 'will delete the survey and its trip stops' do
         create :survey_trip_stop, survey_id: survey.id
         expect { submit }.to change { Survey.count }.by(-1).and(
-                            change { SurveyTripStop.count }.by(-1))
+          change { SurveyTripStop.count }.by(-1)
+        )
       end
+    end
+  end
+
+  describe 'GET #pdf' do
+    it 'will render the pdf' do
+      survey = create :survey, printed: false
+      create :survey_trip_stop, survey_id: survey.id
+      get :pdf, params: { surveys: [survey.id] }
+      survey.reload
+      expect(survey.printed).to be true
     end
   end
 end
