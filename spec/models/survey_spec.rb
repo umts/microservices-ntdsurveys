@@ -13,7 +13,7 @@ describe Survey do
     it 'returns the military time' do
       time = Time.zone.parse('2010-10-10 7:30')
       survey = create :survey, date: time
-      expect(survey.time).to eql '7:30'
+      expect(survey.time).to eql '07:30'
     end
   end
 

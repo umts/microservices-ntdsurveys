@@ -12,8 +12,10 @@ gem 'rails', '~> 5.0'
 gem 'rubocop'
 gem 'sass-rails'
 gem 'uglifier'
-gem 'turbolinks'
 gem 'will_paginate'
+gem 'faker'
+gem 'prawn'
+gem 'prawn-table'
 
 group :production do
   gem 'exception_notification'

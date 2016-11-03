@@ -1,12 +1,15 @@
 class SurveysController < ApplicationController
   def index
-    @surveys = Survey.all.paginate(page: params[:page], per_page: 25)
-    @page = params[:page]
+    params[:page] = 1 if params[:page] == ''
+    @completed = params[:completed] == 'true'
+    @surveys = Survey.where(completed: @completed)
+                     .paginate(page: params[:page], per_page: 25)
+    cookies[:page] = params[:page]
+    cookies[:completed] = @completed
   end
 
   def show
     @survey = Survey.find(params[:id])
-    @page = params[:page]
   end
 
   def update
@@ -16,7 +19,8 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
-    redirect_to surveys_path
+    redirect_to surveys_path(page: cookies[:page],
+                             completed: cookies[:completed])
   end
 
   def destroy
@@ -26,7 +30,16 @@ class SurveysController < ApplicationController
     else
       flash[:alert] = survey.errors.full_messages
     end
-    redirect_to surveys_path
+    redirect_to surveys_path(page: cookies[:page],
+                             completed: cookies[:completed])
+  end
+
+  def pdf
+    surveys = Survey.find(params[:surveys]).sort_by(&:date)
+    surveys.each { |survey| survey.update printed: true }
+    pdf = SurveyPdf.new(surveys)
+    send_data pdf.render, filename: "Survey #{DateTime.current}.pdf",
+                          type: 'application/pdf', disposition: 'inline'
   end
 
   private
