@@ -260,6 +260,8 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
+    umts-microservices-engine (0.0.3)
+      rails (~> 5.0)
     unicode-display_width (1.1.1)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
@@ -301,7 +303,8 @@ DEPENDENCIES
   simplecov
   timecop
   uglifier
+  umts-microservices-engine
   will_paginate
 
 BUNDLED WITH
-   1.12.5
+   1.13.7
