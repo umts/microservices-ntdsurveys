@@ -1,11 +1,11 @@
 %h1 Surveys
 - if @completed
-  = link_to "View Incomplete Surveys", surveys_path(completed: false)
+  = link_to 'View Incomplete Surveys', surveys_path(completed: false)
 - else
-  = link_to "View Completed Surveys", surveys_path(completed: true)
+  = link_to 'View Completed Surveys', surveys_path(completed: true)
 = will_paginate @surveys
 = form_tag action: 'pdf' do |form|
-  %table{id: 'index-table'}
+  %table#index-table
     %thead
       %tr
         %th Survey #
@@ -24,9 +24,9 @@
       - @surveys.each do |survey|
         %tr
           %td= survey.id
-          %td= survey.date.strftime("%m/%d/%Y")
+          %td= survey.date.strftime '%A, %B %e, %Y'
           %td= survey.shift
-          %td= survey.date.strftime("%H:%M")
+          %td= survey.date.strftime '%H:%M %P' 
           %td= survey.starting_pax
           %td
             - if survey.printed
@@ -38,7 +38,7 @@
               Yes
             - else
               No
-          %td= link_to "View", survey_path(survey.id)
-          %td= link_to "Delete", survey_path(survey.id), method: :delete
+          %td= link_to 'View', survey_path(survey.id)
+          %td= link_to 'Delete', survey_path(survey.id), method: :delete
           %td= check_box_tag 'surveys[]', survey.id, false, class: 'print-survey'
   = submit_tag 'Print Selected Surveys', disabled: true, id: 'submit'
