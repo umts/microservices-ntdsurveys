@@ -1,4 +1,16 @@
 class SurveysController < ApplicationController
+
+  def destroy
+    survey = Survey.find(params[:id])
+    if survey.destroy
+      flash[:notice] = 'Successfully deleted survey.'
+    else
+      flash[:alert] = survey.errors.full_messages
+    end
+    redirect_to surveys_path(page: cookies[:page],
+                             completed: cookies[:completed])
+  end
+
   def index
     params[:page] = 1 if params[:page] == ''
     @completed = params[:completed] == 'true'
@@ -6,6 +18,14 @@ class SurveysController < ApplicationController
                      .paginate(page: params[:page], per_page: 25)
     cookies[:page] = params[:page]
     cookies[:completed] = @completed
+  end
+
+  def pdf
+    surveys = Survey.find(params[:surveys]).sort_by(&:date)
+    surveys.each { |survey| survey.update printed: true }
+    pdf = SurveyPdf.new(surveys)
+    send_data pdf.render, filename: "Survey #{DateTime.current}.pdf",
+                          type: 'application/pdf', disposition: 'inline'
   end
 
   def show
@@ -21,25 +41,6 @@ class SurveysController < ApplicationController
     end
     redirect_to surveys_path(page: cookies[:page],
                              completed: cookies[:completed])
-  end
-
-  def destroy
-    survey = Survey.find(params[:id])
-    if survey.destroy
-      flash[:notice] = 'Successfully deleted survey.'
-    else
-      flash[:alert] = survey.errors.full_messages
-    end
-    redirect_to surveys_path(page: cookies[:page],
-                             completed: cookies[:completed])
-  end
-
-  def pdf
-    surveys = Survey.find(params[:surveys]).sort_by(&:date)
-    surveys.each { |survey| survey.update printed: true }
-    pdf = SurveyPdf.new(surveys)
-    send_data pdf.render, filename: "Survey #{DateTime.current}.pdf",
-                          type: 'application/pdf', disposition: 'inline'
   end
 
   private
