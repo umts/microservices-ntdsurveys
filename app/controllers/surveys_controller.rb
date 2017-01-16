@@ -11,6 +11,14 @@ class SurveysController < ApplicationController
                              completed: cookies[:completed])
   end
 
+  def generate
+    if request.get?
+      @default_start = 1.month.since.beginning_of_month
+      @default_end = 1.month.since.end_of_month
+    else #TODO
+    end
+  end
+
   def index
     params[:page] = 1 if params[:page] == ''
     @completed = params[:completed] == 'true'

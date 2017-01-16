@@ -1,0 +1,16 @@
+%h1 Generate Surveys
+
+= form_tag generate_surveys_path(type: :ntd) do
+  Generate random NTD surveys:
+  .field
+    = label_tag :start_date, 'Starting on:'
+    = text_field_tag :start_date, @default_start.strftime('%-m/%-d/%Y'), class: 'day-pick'
+  .field
+    = label_tag :end_date, 'Ending on:'
+    = text_field_tag :end_date, @default_end.strftime('%-m/%-d/%Y'), class: 'day-pick'
+  .field
+    = label_tag :daily_count, 'Surveys per day:'
+    = number_field_tag :daily_count, 3, min: 0, step: 1
+  .actions= submit_tag 'Generate NTD surveys'
+
+= #TODO: in-house surveys
