@@ -15,7 +15,20 @@ class SurveysController < ApplicationController
     if request.get?
       @default_start = 1.month.since.beginning_of_month
       @default_end = 1.month.since.end_of_month
-    else #TODO
+    else
+      generation_result = 
+        case params.require(:type)
+        when 'ntd'
+          Survey.generate_ntd(
+            start_date: params.require(:start_date),
+            end_date: params.require(:end_date),
+            daily_count: params.require(:daily_count)
+          )
+        when 'in_house' #TODO
+        end
+      #TODO: handle failure
+      flash[:notice] = 'Successfully generated surveys.'
+      redirect_to surveys_path
     end
   end
 

@@ -36,6 +36,16 @@ describe SurveysController do
     end
   end
 
+  describe 'POST #generate' do
+    it 'forwards the parameters to Survey.generate_ntd' do
+      parameters = { start_date:  '02/01/2017',
+                     end_date:    '02/28/2017',
+                     daily_count: '3' }
+      expect(Survey).to receive(:generate_ntd).with(parameters)
+      post :generate, parameters.merge(type: :ntd)
+    end
+  end
+
   describe 'GET #pdf' do
     it 'will render the pdf' do
       survey = create :survey, printed: false
