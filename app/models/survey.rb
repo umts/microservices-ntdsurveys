@@ -14,6 +14,10 @@ class Survey < ApplicationRecord
   end
 
   def time
-    date.strftime '%H:%M %P'
+    date.strftime '%-H:%M %P'
+  end
+
+  def self.generate_ntd(start_date:, end_date:, daily_count:)
+    # This method signature here to make RSpec pass.
   end
 end
