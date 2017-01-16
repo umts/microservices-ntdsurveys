@@ -4,7 +4,7 @@
 - else
   = link_to 'View Completed Surveys', surveys_path(completed: true)
 = will_paginate @surveys
-= form_tag action: 'pdf' do |form|
+= form_tag pdf_surveys_path, method: :get do |form|
   %table#index-table
     %thead
       %tr
