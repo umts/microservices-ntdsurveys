@@ -3,20 +3,20 @@
 
 # REQUIRED field
 # The name of the microservice
-name: 'ntdsurveys'
+name: ntdsurveys
 
 # REQUIRED field
 # The URI for the site hosting the microservice
-# NOTE: Do not attach the /v1/data to this.
-uri: ''
+uri: http://localhost:3001
 
 # REQUIRED field
 # Verification token
-security_token: ''
+security_token: 3686972807e6f0dc223d4fa1ab50fa1636e76a0e292a6e7b66b60636143435f5f93fd2201e7e826925e8b093a6c6a6b3a9348fbef2583b7afa4a31d0408c810a
 
 # REQUIRED Field
 # Endpoint of Microservices router
-router_uri: ''
+# Make sure you do not add a slash at the end.
+router_uri: http://localhost:3002
 
 # OPTIONAL field (leave blank if not applicable)
 # The models that the service can give info on
