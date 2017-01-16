@@ -29,4 +29,30 @@ describe Survey do
       expect(survey.location).to eql 'Fine Arts Center'
     end
   end
+
+  describe 'self.generate_ntd' do
+    let :trip_attributes do
+      { datetime: '2017-02-01T14:15:00-05:00',
+        shift: '30-1 PM1',
+        trip_stops: [trip_stop_attributes] }
+    end
+    let :trip_stop_attributes do
+      { distance: '0.307',
+        datetime: '2017-02-01T14:20:00-05:00',
+        sequence_number: 1,
+        location: 'Old Belchertown Road' }
+    end
+    let :data do
+      { trips: [trip_attributes] }.to_json
+    end
+    it 'makes a call to the trip service and creates the objects as received' do
+      dates = { start_date: '02/01/2017', end_date: '02/28/2017' }
+      expect(MicroservicesEngine).to receive(:get).with(
+        :trips, :generate_random_trips, dates.merge(count_per_day: 3))
+        .and_return data
+      expect { Survey.generate_ntd(dates.merge(daily_count: 3)) }
+        .to change(Survey, :count).by(1)
+        .and change(SurveyTripStop, :count).by(1)
+    end
+  end
 end
