@@ -25,6 +25,13 @@ describe SurveysController do
     end
   end
 
+  describe 'GET #generate' do
+    it 'renders the template' do
+      get :generate
+      expect(response).to render_template :generate
+    end
+  end
+
   describe 'GET #pdf' do
     it 'will render the pdf' do
       survey = create :survey, printed: false
