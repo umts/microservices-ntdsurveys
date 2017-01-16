@@ -6,7 +6,7 @@ class Survey < ApplicationRecord
   validates :shift, presence: true
 
   def formatted_date
-    date.strftime('%m/%d/%Y')
+    date.strftime '%A, %B %e, %Y'
   end
 
   def location
@@ -14,6 +14,6 @@ class Survey < ApplicationRecord
   end
 
   def time
-    date.strftime('%H:%M')
+    date.strftime '%H:%M %P'
   end
 end

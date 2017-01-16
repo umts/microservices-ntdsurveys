@@ -1,7 +1,7 @@
 %h1  Survey ##{@survey.id}
-%p Date: #{@survey.date.strftime '%A, %B %e, %Y'}
+%p Date: #{@survey.formatted_date}
 %p Shift: #{@survey.shift}
-%p Time: #{@survey.date.strftime '%H:%M %P'}
+%p Time: #{@survey.time}
 = form_for @survey do |survey_form|
   .field
     = survey_form.label 'Starting Passengers: '

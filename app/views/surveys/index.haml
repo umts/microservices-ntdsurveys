@@ -27,9 +27,9 @@
       - @surveys.each do |survey|
         %tr
           %td= survey.id
-          %td= survey.date.strftime '%A, %B %e, %Y'
+          %td= survey.formatted_date
           %td= survey.shift
-          %td= survey.date.strftime '%H:%M %P' 
+          %td= survey.time
           %td= survey.starting_pax
           %td
             - if survey.printed
