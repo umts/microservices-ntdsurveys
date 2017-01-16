@@ -1,11 +1,11 @@
 class SurveysController < ApplicationController
+  before_action :find_survey, only: %i(destroy show update)
 
   def destroy
-    survey = Survey.find(params[:id])
-    if survey.destroy
+    if @survey.destroy
       flash[:notice] = 'Successfully deleted survey.'
     else
-      flash[:alert] = survey.errors.full_messages
+      flash[:alert] = @survey.errors.full_messages
     end
     redirect_to surveys_path(page: cookies[:page],
                              completed: cookies[:completed])
@@ -28,22 +28,22 @@ class SurveysController < ApplicationController
                           type: 'application/pdf', disposition: 'inline'
   end
 
-  def show
-    @survey = Survey.find(params[:id])
-  end
-
   def update
-    survey = Survey.find(params[:id])
-    if survey.update(survey_params)
+    if @survey.update survey_params
       flash[:notice] = 'Successfully updated survey.'
     else
-      flash[:alert] = survey.errors.full_messages
+      flash[:alert] = @survey.errors.full_messages
     end
     redirect_to surveys_path(page: cookies[:page],
                              completed: cookies[:completed])
   end
 
   private
+
+  def find_survey
+    @survey = Survey.find_by id: params.require(:id)
+    # render public/404 unless @survey.present?
+  end
 
   def survey_params
     params.require(:survey).permit(:starting_pax, :completed,
