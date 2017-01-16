@@ -30,8 +30,7 @@ describe SurveysController do
       survey = create :survey, printed: false
       create :survey_trip_stop, survey_id: survey.id
       get :pdf, params: { surveys: [survey.id] }
-      survey.reload
-      expect(survey.printed).to be true
+      expect(survey.reload).to be_printed
     end
   end
 
@@ -49,7 +48,7 @@ describe SurveysController do
       survey = create :survey, starting_pax: 3
       put :update, params: { id: survey.id, survey: { starting_pax: 1 } }
       survey.reload
-      expect(survey.starting_pax).to eql 1
+      expect(survey.starting_pax).to be 1
     end
   end
 end
