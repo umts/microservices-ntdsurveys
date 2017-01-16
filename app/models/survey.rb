@@ -5,12 +5,12 @@ class Survey < ApplicationRecord
   validates :date, presence: true
   validates :shift, presence: true
 
-  def location
-    survey_trip_stops.order(:sequence_number).first.location
-  end
-
   def formatted_date
     date.strftime('%m/%d/%Y')
+  end
+
+  def location
+    survey_trip_stops.order(:sequence_number).first.location
   end
 
   def time
