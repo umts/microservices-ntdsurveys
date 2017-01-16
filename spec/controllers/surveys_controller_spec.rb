@@ -26,9 +26,13 @@ describe SurveysController do
   end
 
   describe 'GET #generate' do
+    before { get :generate }
     it 'renders the template' do
-      get :generate
       expect(response).to render_template :generate
+    end
+    it 'suggests a start and end date sometime after today' do
+      expect(assigns.fetch :default_start).to be > Date.today
+      expect(assigns.fetch :default_end).to be > Date.today
     end
   end
 
