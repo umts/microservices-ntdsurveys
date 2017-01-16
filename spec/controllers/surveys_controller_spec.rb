@@ -42,7 +42,7 @@ describe SurveysController do
                      end_date:    '02/28/2017',
                      daily_count: '3' }
       expect(Survey).to receive(:generate_ntd).with(parameters)
-      post :generate, parameters.merge(type: :ntd)
+      post :generate, params: parameters.merge(type: :ntd)
     end
   end
 

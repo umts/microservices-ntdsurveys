@@ -1,17 +1,20 @@
 require 'rails_helper'
 
 describe Survey do
-  let(:date) { Time.zone.parse('2010-10-10 7:30') }
-  let(:survey) { create :survey, date: date }
-  describe 'formatted_date' do
-    it 'returns the formatted date' do
-      expect(survey.formatted_date).to eql 'Sunday, October 10, 2010'
-    end
-  end
+  context 'formatting methods' do
+    let(:date) { Time.zone.parse('2010-10-10 7:30') }
+    let(:survey) { create :survey, date: date }
 
-  describe 'time' do
-    it 'returns the military time' do
-      expect(survey.time).to eql '7:30 am'
+    describe 'formatted_date' do
+      it 'returns the formatted date' do
+        expect(survey.formatted_date).to eql 'Sunday, October 10, 2010'
+      end
+    end
+
+    describe 'time' do
+      it 'returns the military time' do
+        expect(survey.time).to eql '7:30 am'
+      end
     end
   end
 
