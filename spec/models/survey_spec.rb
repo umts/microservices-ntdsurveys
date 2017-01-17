@@ -37,7 +37,7 @@ describe Survey do
         trip_stops: [trip_stop_attributes] }
     end
     let :trip_stop_attributes do
-      { distance: '0.307',
+      { distance: 0.307,
         datetime: '2017-02-01T14:20:00-05:00',
         sequence_number: 1,
         location: location_attributes }
@@ -49,14 +49,35 @@ describe Survey do
     let :data do
       { trips: [trip_attributes] }.to_json
     end
-    it 'makes a call to the trip service and creates the objects as received' do
-      dates = { start_date: '02/01/2017', end_date: '02/28/2017' }
+    let :dates do
+      { start_date: '02/01/2017', end_date: '02/28/2017' }
+    end
+    let :call do
+      Survey.generate_ntd dates.merge(daily_count: 3)
+    end
+    before do
       expect(MicroservicesEngine).to receive(:get).with(
         :trips, :generate_random_trips, dates.merge(count_per_day: 3))
         .and_return data
-      expect { Survey.generate_ntd(dates.merge(daily_count: 3)) }
+    end
+    it 'makes a call to the trip service and creates the objects as received' do
+      expect { call }
         .to change(Survey, :count).by(1)
         .and change(SurveyTripStop, :count).by(1)
+      expect(Survey.last).to have_attributes(
+        date: DateTime.iso8601(trip_attributes[:datetime]),
+        shift: trip_attributes[:shift]
+      )
+      expect(SurveyTripStop.last).to have_attributes(
+        miles_from_previous: trip_stop_attributes[:distance],
+        time: DateTime.iso8601(trip_stop_attributes[:datetime]),
+        sequence_number: trip_stop_attributes[:sequence_number],
+        location: location_attributes[:name]
+      )
+    end
+    it 'attaches the trip stop to the survey' do
+      call
+      expect(SurveyTripStop.last.survey).to eql Survey.last
     end
   end
 end
