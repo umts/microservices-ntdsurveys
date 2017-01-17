@@ -1,5 +1,5 @@
 language: ruby
-rvm: 2.3.0
+rvm: 2.3.1
 env: 
   global:
     - CODECLIMATE_REPO_TOKEN=eab6c8947bd012a12d3742c121d2375d1450a08f3410d1ddcab4d7f9f686278d
@@ -10,3 +10,4 @@ before_script:
 script:
   - bundle exec rails db:reset
   - bundle exec rspec
+  - bundle exec codeclimate-test-reporter
