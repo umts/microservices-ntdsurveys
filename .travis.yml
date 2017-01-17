@@ -1,6 +1,8 @@
 language: ruby
 rvm: 2.3.0
-env: CODECLIMATE_REPO_TOKEN=eab6c8947bd012a12d3742c121d2375d1450a08f3410d1ddcab4d7f9f686278d
+env: 
+  - CODECLIMATE_REPO_TOKEN=eab6c8947bd012a12d3742c121d2375d1450a08f3410d1ddcab4d7f9f686278d
+  - DISABLE_ROUTER_CHECKIN=true
 before_script:
   - cp config/database.yml.example config/database.yml
   - cp config/secrets.yml.example config/secrets.yml
