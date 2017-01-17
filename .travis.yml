@@ -11,3 +11,9 @@ script:
   - bundle exec rails db:reset
   - bundle exec rspec
   - bundle exec codeclimate-test-reporter
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+    receipients: programmers@admin.umass.edu
+
