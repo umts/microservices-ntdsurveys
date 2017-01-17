@@ -279,7 +279,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-pending
   capistrano-rails
-  codeclimate-test-reporter
+  codeclimate-test-reporter (~> 1.0)
   coffee-rails
   exception_notification
   factory_girl_rails
