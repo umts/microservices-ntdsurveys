@@ -27,12 +27,13 @@ class Survey < ApplicationRecord
     JSON.parse(trip_result).fetch('trips').each do |trip_data|
       survey_attributes = {
         date: DateTime.iso8601(trip_data.fetch('datetime')).in_time_zone, # TODO: see r3#2483
-        shift: trip_data.fetch('shift') # TODO: see r3#2483
+        shift: trip_data.fetch('shift'), # TODO: see r3#2483
+        in_house: false
       }
-      survey = Survey.create! date: date, shift: shift, in_house: false
+      survey = Survey.create! survey_attributes
       trip_data.fetch('trip_stops').each do |stop_data|
         stop_attributes = {
-          distance: stop_data.fetch('distance').to_f, # TODO: see r3#2483
+          miles_from_previous: stop_data.fetch('distance').to_f, # TODO: see r3#2483
           time: DateTime.iso8601(stop_data.fetch('datetime')).in_time_zone, # TODO: see r3#2483
           sequence_number: stop_data.fetch('sequence_number').to_i,
           location: stop_data.fetch('location').fetch('name'),

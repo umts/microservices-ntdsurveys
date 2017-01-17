@@ -40,7 +40,11 @@ describe Survey do
       { distance: '0.307',
         datetime: '2017-02-01T14:20:00-05:00',
         sequence_number: 1,
-        location: 'Old Belchertown Road' }
+        location: location_attributes }
+    end
+    let :location_attributes do
+      { name: 'Old Belchertown Road',
+        is_public: true }
     end
     let :data do
       { trips: [trip_attributes] }.to_json
