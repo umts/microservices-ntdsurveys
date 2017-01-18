@@ -16,6 +16,16 @@ describe SurveysController do
           .and change(SurveyTripStop, :count).by(-1)
       end
     end
+    context 'destroy is not successful' do
+      it 'renders error messages in the flash' do
+        expect_any_instance_of(Survey)
+          .to receive(:destroy).and_return false
+        expect_any_instance_of(Survey)
+          .to receive(:errors).and_return double full_messages: 'error messages'
+        submit
+        expect(flash[:alert]).to eql 'error messages'
+      end
+    end
   end
 
   describe 'GET #index' do
@@ -65,11 +75,13 @@ describe SurveysController do
   end
 
   describe 'PUT #update' do
-    it 'updates the survey' do
-      survey = create :survey, starting_pax: 3
+    let(:survey) { create :survey, starting_pax: 3 }
+    let :submit do
       put :update, params: { id: survey.id, survey: { starting_pax: 1 } }
-      survey.reload
-      expect(survey.starting_pax).to be 1
+    end
+    it 'updates the survey' do
+      submit
+      expect(survey.reload.starting_pax).to be 1
     end
   end
 end

@@ -5,6 +5,9 @@ SimpleCov.start 'rails'
 SimpleCov.start do
   add_filter '/config/'
   add_filter '/spec/'
+  add_filter '/app/channels/'
+  add_filter '/app/jobs/'
+  add_filter '/app/mailers/'
 end
 
 RSpec.configure do |config|

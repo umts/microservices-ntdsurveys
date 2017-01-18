@@ -37,7 +37,7 @@ describe Survey do
         trip_stops: [trip_stop_attributes] }
     end
     let :trip_stop_attributes do
-      { distance: 0.307,
+      { distance: 2640,
         datetime: '2017-02-01T14:20:00-05:00',
         sequence_number: 1,
         location: location_attributes }
@@ -69,7 +69,7 @@ describe Survey do
         shift: trip_attributes[:shift]
       )
       expect(SurveyTripStop.last).to have_attributes(
-        miles_from_previous: trip_stop_attributes[:distance],
+        miles_from_previous: trip_stop_attributes[:distance] / 5280.0,
         time: DateTime.iso8601(trip_stop_attributes[:datetime]),
         sequence_number: trip_stop_attributes[:sequence_number],
         location: location_attributes[:name]
