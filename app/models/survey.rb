@@ -33,7 +33,7 @@ class Survey < ApplicationRecord
       survey = Survey.create! survey_attributes
       trip_data.fetch('trip_stops').each do |stop_data|
         stop_attributes = {
-          miles_from_previous: stop_data.fetch('distance') / 5280.0,
+          miles_from_previous: stop_data.fetch('feet_from_previous_stop') / 5280.0,
           time: DateTime.iso8601(stop_data.fetch('datetime')).in_time_zone, # TODO: see r3#2483
           sequence_number: stop_data.fetch('sequence_number').to_i,
           location: stop_data.fetch('location').fetch('name'),
