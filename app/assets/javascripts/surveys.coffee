@@ -8,11 +8,12 @@ $(document).ready ->
       $('#submit').prop 'disabled', true
     return
   $('#index-table').on 'change', '.print-survey', ->
+    tr_length = $('#index-table').find('tbody > tr').length
     if $('#index-table').find('.print-survey:checked').length == 0
       $('#submit').prop 'disabled', true
     else
       $('#submit').prop 'disabled', false
-    if $('.print-survey:checked').length == $('#index-table').find('tbody > tr').length
+    if $('.print-survey:checked').length == tr_length
       $('#select-all').prop 'checked', true
     else
       $('#select-all').prop 'checked', false
