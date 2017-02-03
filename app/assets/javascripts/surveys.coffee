@@ -12,5 +12,9 @@ $(document).ready ->
       $('#submit').prop 'disabled', true
     else
       $('#submit').prop 'disabled', false
+    if $('.print-survey:checked').length == $('#index-table').find('tbody > tr').length
+      $('#select-all').prop 'checked', true
+    else
+      $('#select-all').prop 'checked', false
     return
   return
