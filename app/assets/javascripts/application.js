@@ -13,22 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-$(document).ready(function(){
-  $("#index-table").on("change", "#select-all", function(){
-    if($(this).is(":checked")){
-      $("#index-table").find(".print-survey").prop("checked", true);
-      $("#submit").prop("disabled", false);
-    }
-    else{
-      $("#index-table").find(".print-survey").prop("checked", false);
-      $("#submit").prop("disabled", true);
-    }
-  });
-
-  $("#index-table").on("change", ".print-survey", function(){
-    if($("#index-table").find(".print-survey:checked").length == 0){
-      $("#submit").prop("disabled", true);
-    }
-    else $("#submit").prop("disabled", false);
-  });
-});
