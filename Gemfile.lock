@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:umts/microservices-engine.git
+  revision: d94c5bad43e1386093749fb8f2f5857c70677091
+  specs:
+    umts-microservices-engine (0.1.2)
+      rails (>= 3.0, < 6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -260,8 +267,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
-    umts-microservices-engine (0.1.1)
-      rails (>= 3.0, < 6.0)
     unicode-display_width (1.1.2)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
@@ -303,8 +308,8 @@ DEPENDENCIES
   simplecov
   timecop
   uglifier
-  umts-microservices-engine
+  umts-microservices-engine!
   will_paginate
 
 BUNDLED WITH
-   1.13.7
+   1.14.4
