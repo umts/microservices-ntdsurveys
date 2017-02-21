@@ -31,5 +31,3 @@
 #ignore the router_info file
 /config/mse_router_info.yml
 /config/initializers/microservices_engine.rb
-
-db/migrate/20170221202409_create_microservices_engine_connection.rb
