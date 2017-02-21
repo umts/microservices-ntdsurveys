@@ -27,3 +27,7 @@
 # Ignore all of coverage but last run json.
 /coverage/*
 !/coverage/.last_run.json
+
+#ignore the router_info file
+/config/mse_router_info.yml
+/config/initializers/microservices-engine.rb
