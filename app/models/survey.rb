@@ -21,7 +21,7 @@ class Survey < ApplicationRecord
 
   def self.generate_ntd(start_date:, end_date:, daily_count:)
     trip_result = MicroservicesEngine.get(
-      :trips, :generate_random_trips, { start_date: start_date,
+      :trips, [:generate_random_trips], { start_date: start_date,
                                         end_date: end_date,
                                         count_per_day: daily_count })
     JSON.parse(trip_result).fetch('trips').each do |trip_data|

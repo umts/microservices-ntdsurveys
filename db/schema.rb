@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005141210) do
+ActiveRecord::Schema.define(version: 20170221202409) do
+
+  create_table "microservices_engine_connections", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "object"
+    t.string "url"
+  end
 
   create_table "survey_trip_stops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "boarded"
